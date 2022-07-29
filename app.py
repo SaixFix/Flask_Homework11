@@ -37,8 +37,7 @@ def search_candidates_by_skill(candidate_skill):
     Страница с информацией о кондидате по скилу
     """
     candidates: list[dict] = get_candidates_by_skill(candidate_skill)
-    return render_template('skill.html', candidates=candidates)
-
+    return render_template('skill.html', candidates=candidates, skill=candidate_skill)
 
 
 app.run()
