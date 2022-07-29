@@ -42,4 +42,3 @@ def get_candidates_by_skill(skill_name: str) -> dict:
 
     return list_candidates
 
-# print(get_candidates_by_name(input()))

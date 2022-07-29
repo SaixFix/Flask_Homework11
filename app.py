@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from utils import load_candidates_from_json, get_candidate, get_candidates_by_name
+from utils import load_candidates_from_json, get_candidate, get_candidates_by_name, get_candidates_by_skill
 
 app = Flask(__name__)
 
@@ -22,13 +22,23 @@ def personal_page(uid):
     return render_template(' card.html', candidate=candidate)
 
 
-@app.route("/search/<str:candidate_name>")
-def search_page(candidate_name):
+@app.route("/search/<candidate_name>")
+def search_candidates_by_name(candidate_name):
     """
-    Страница с информацией о кондидате по номеру
+    Страница с информацией о кондидате по имени
     """
     candidates: list[dict] = get_candidates_by_name(candidate_name)
-    return render_template(' search.html', candidates=candidates)
+    return render_template('search.html', candidates=candidates)
+
+
+@app.route("/skill/<candidate_skill>")
+def search_candidates_by_skill(candidate_skill):
+    """
+    Страница с информацией о кондидате по скилу
+    """
+    candidates: list[dict] = get_candidates_by_skill(candidate_skill)
+    return render_template('skill.html', candidates=candidates)
+
 
 
 app.run()
